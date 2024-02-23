@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\User;
+use DB;
 
 class ChartController extends Controller
 {
@@ -19,12 +20,12 @@ class ChartController extends Controller
     		$count = 0;
 
     		
-    foreach ($users as $user) {
-        if ($user->month == $i) {
-            $count = $user->count;
-            break;
-        }
-    }
+	    foreach ($users as $user) {
+	        if ($user->month == $i) {
+	            $count = $user->count;
+	            break;
+	        }
+	    }
     		array_push($labels, $month);
     		array_push($data, $count);
     	}
@@ -36,5 +37,16 @@ class ChartController extends Controller
     		]
     	];
     	return view('chart.chart', compact('datasets', 'labels'));
+    }
+
+    public function HighChart()
+    {
+    	$userData = User::select(DB::raw("COUNT(*) as count"))
+    					->whereYear("created_at", date('Y'))
+    					->groupBy(DB::raw("Month(created_at)"))
+    					->pluck('count');
+
+    	// dd($userData);
+    	return view('chart.high_chart', compact('userData'));
     }
 }
