@@ -25,3 +25,5 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 Route::get('/chart', [ChartController::class, 'index'])->name('chart.index');
 
 Route::get('/high-chart', [ChartController::class, 'HighChart'])->name('high.chart.index');
+
+Route::get('/pie-chart', [ChartController::class, 'pieChart'])->name('pie.chart.index');

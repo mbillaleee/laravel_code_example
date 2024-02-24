@@ -2,12 +2,15 @@
 
 @section('content')
 
-	<h1>BAR CHART IN LARAVEL</h1>
+	
 
-	<div class="width:800px; margin:auto;">
+	<div class="container">
+		<h1 class="text-center">BAR CHART IN LARAVEL</h1>
+		<div class="width:800px; margin:auto;">
 		<canvas id="chart"></canvas>
 	</div>
-
+	</div>
+	<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
 	<script>
 		var ctx = document.getElementById('chart').getContext('2d');
 		// alert(ctx);
